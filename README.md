@@ -9,7 +9,8 @@ There are currently no views for the generated models but there is a toString im
 
 The model/business logic is largely unit tested with good coverage.
 
-TODO
+##TODO
+
 Implement optimised version of point attractor using bounding box of current stuck particles
 
 Implement line attractor
