@@ -35,6 +35,20 @@ public class ParticlesTest {
     }
 
     @Test
+    public void stuck_order_is_zero_if_position_is_out_of_bounds() {
+        Particles particles = new Particles(10, 10);
+
+        assertThat(particles.getStuckOrder(new Position(11, 11)), is(0));
+    }
+
+    @Test
+    public void particle_is_not_stuck_if_position_is_out_of_bounds() {
+        Particles particles = new Particles(10, 10);
+
+        assertThat(particles.isParticleStuck(new Position(11, 11)), is(false));
+    }
+
+    @Test
     public void random_particle_position_is_always_within_bounds() {
         Particles particles = new Particles(10, 10);
 

@@ -41,7 +41,11 @@ public class Particles {
     }
 
     public int getStuckOrder(final Position position) {
-        return getParticle(position).getStuckOrder();
+        int stuckOrder = 0;
+        if (positionIsValid(position)) {
+            stuckOrder = getParticle(position).getStuckOrder();
+        }
+        return stuckOrder;
     }
 
     public Position getRandomPosition() {
@@ -61,7 +65,9 @@ public class Particles {
     }
 
     public void stick(final Position position, final int stuckOrder) {
-        getParticle(position).setStuck(stuckOrder);
+        if (positionIsValid(position)) {
+            getParticle(position).setStuck(stuckOrder);
+        }
     }
 
     public int getNumStuckParticles() {
