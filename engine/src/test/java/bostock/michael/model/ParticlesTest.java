@@ -16,7 +16,9 @@ public class ParticlesTest {
 
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 10; y++) {
-                assertThat(particles.isParticleStuck(new Position(x, y)), is(false));
+                Position position = new Position(x, y);
+                assertThat(particles.isParticleStuck(position), is(false));
+                assertThat(particles.getStuckOrder(position), is(0));
             }
         }
     }
@@ -29,6 +31,7 @@ public class ParticlesTest {
         particles.stick(stuckPosition, 3);
 
         assertThat(particles.isParticleStuck(stuckPosition), is(true));
+        assertThat(particles.getStuckOrder(stuckPosition), is(3));
     }
 
     @Test

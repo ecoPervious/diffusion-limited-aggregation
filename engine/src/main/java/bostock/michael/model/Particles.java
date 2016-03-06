@@ -38,6 +38,10 @@ public class Particles {
         return particleStuck;
     }
 
+    public int getStuckOrder(final Position position) {
+        return getParticle(position).getStuckOrder();
+    }
+
     public Position getRandomPosition() {
         return new Position(Randomizer.randomBetween(0, width - 1), Randomizer.randomBetween(0, height - 1));
     }
