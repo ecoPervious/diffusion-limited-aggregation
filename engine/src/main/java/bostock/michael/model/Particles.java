@@ -3,6 +3,8 @@ package bostock.michael.model;
 
 import bostock.michael.random.Randomizer;
 
+import java.util.Arrays;
+
 public class Particles {
     private final Particle[][] particles;
     private final int width;
@@ -55,11 +57,15 @@ public class Particles {
         final Position below = move(position, Direction.DOWN);
         final Position left = move(position, Direction.LEFT);
         final Position right = move(position, Direction.RIGHT);
-        return isParticleStuck(above) || isParticleStuck(below) || isParticleStuck(left) || isParticleStuck(right);
+        return !isParticleStuck(position) && (isParticleStuck(above) || isParticleStuck(below) || isParticleStuck(left) || isParticleStuck(right));
     }
 
     public void stick(final Position position, final int stuckOrder) {
         getParticle(position).setStuck(stuckOrder);
+    }
+
+    public int getNumStuckParticles() {
+        return (int) Arrays.stream(particles).flatMap(Arrays::stream).filter(Particle::isStuck).count();
     }
 
     private Particle getParticle(final Position position) {
@@ -72,5 +78,17 @@ public class Particles {
 
     private boolean positionIsValid(final Position position) {
         return position.getX() >= 0 && position.getX() < width && position.getY() >= 0 && position.getY() < height;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                builder.append(getParticle(new Position(x, y)).toString());
+            }
+            builder.append("\n");
+        }
+        return builder.toString();
     }
 }

@@ -106,4 +106,15 @@ public class ParticlesTest {
 
         assertThat(particles.particleShouldStick(new Position(5, 5)), is(false));
     }
+
+    @Test
+    public void particle_should_not_stick_more_than_once() {
+        Particles particles = new Particles(10, 10);
+
+        Position position = new Position(4, 4);
+        particles.stick(position, 1);
+        particles.stick(new Position(4, 5), 2);
+
+        assertThat(particles.particleShouldStick(position), is(false));
+    }
 }

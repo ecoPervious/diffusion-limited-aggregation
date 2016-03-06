@@ -27,4 +27,9 @@ public class Particle {
         this.stuck = true;
         this.stuckOrder = stuckOrder;
     }
+
+    @Override
+    public String toString() {
+        return (stuck ? "*" : " ");
+    }
 }
